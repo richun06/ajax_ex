@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <!-- current_user 現在ログインしているユーザの情報、つまり自分の情報を返すメソッド -->
-<div><%= current_user.name%>さん、ようこそ！</div>
+<!-- <div><%#= current_user.name%>さん、ようこそ！</div> -->
+<!-- ログアウトするとnameがnil:NilClassのエラー発生 原因：root 'blogs#index'になっているためログアウトするとcurrent_userが見つからないためエラーになる -->
 
 <h1>Blogs</h1>
 
