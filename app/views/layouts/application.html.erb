@@ -11,6 +11,15 @@
   </head>
 
   <body>
+    <!-- user_signed_in? ユーザーのログイン有無をboolean値で返すメソッド -->
+    <!-- ログイン時には「ログアウト」と表示させ、未ログイン時には「ログイン」「サインアップ」を表示する -->
+    <% if user_signed_in? %>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to 'ログイン', new_user_session_path %></li>
+      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
