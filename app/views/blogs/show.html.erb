@@ -10,5 +10,17 @@
   <%= @blog.content %>
 </p>
 
+<p>コメント一覧</p>
+
+<!-- comments_areaというHTMLのidを取得して、このdiv部分だけを更新する -->
+<div id="comments_area">
+  <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+  <%= render partial: 'comments/index', locals: { comments: @comments, blog: @blog } %>
+</div>
+
+<!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+<%= render partial: 'comments/form', locals: { comments: @comments, blog: @blog } %>
+
+
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
