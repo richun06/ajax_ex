@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [:new, :create] # ログインユーザのみがブログ投稿できる、未ログインでも一覧表示は可能
+  # before_action :authenticate_user!, only: [:new, :create] # ログインユーザのみがブログ投稿できる、未ログインでも一覧表示は可能
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] # diviseテキスト5個目の3 未ログイン状態でも、ブログの閲覧だけは可能になる
 
   # GET /blogs or /blogs.json
   def index
