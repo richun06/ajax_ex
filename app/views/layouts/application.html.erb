@@ -14,10 +14,11 @@
     <!-- user_signed_in? ユーザーのログイン有無をboolean値で返すメソッド -->
     <!-- ログイン時には「ログアウト」と表示させ、未ログイン時には「ログイン」「サインアップ」を表示する -->
     <% if user_signed_in? %>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <%= link_to "ブログ投稿", blogs_path %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
     <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path %></li>
-      <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to '新規作成', new_user_registration_path %>
     <% end %>
 
     <%= yield %>
