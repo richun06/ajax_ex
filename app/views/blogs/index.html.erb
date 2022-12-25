@@ -4,6 +4,12 @@
 <!-- <div><%#= current_user.name%>さん、ようこそ！</div> -->
 <!-- ログアウトするとnameがnil:NilClassのエラー発生 原因：root 'blogs#index'になっているためログアウトするとcurrent_userが見つからないためエラーになる -->
 
+<% if user_signed_in? %>
+  <div><%= current_user.name%>さん、ようこそ！</div>
+<% else %>
+  <div>ログインして下さい</div>
+<% end %>
+
 <h1>Blogs</h1>
 
 <table>
