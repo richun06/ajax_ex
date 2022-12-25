@@ -22,11 +22,16 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = @blog.comments.find(params[:id])
-    respond_to do |format|
-      flash.now[:notice] = 'コメントの編集中'
-      format.js { render :edit }
+    if @comment.user == current_user
+      respond_to do |format|
+        flash.now[:notice] = 'コメントの編集中'
+        format.js { render :edit }
+      end
+    else
+      redirect_to blogs_path
     end
   end
+
   def update
     @comment = @blog.comments.find(params[:id])
       respond_to do |format|
