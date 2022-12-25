@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     @comment = @blog.comments.build(comment_params) # Blogをパラメータの値から探し出し、Blogに紐づくcommentsとしてbuildする
     # @blog.comments.build(comment_params)という記述をすることで、@blogのidをblog_idにあらかじめ含んだ状態のCommentインスタンスをnew（作成）することができる
 
+    @comment.user_id = current_user.id
     # byebug
     respond_to do |format|
       if @comment.save
@@ -51,7 +52,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :user_id)
   end
 
   def set_blog
