@@ -1,0 +1,10 @@
+<!-- Ajaxで動的にボタンの切り替えができるようにするためには、ユーザごとのIDで”誰をフォローするボタンなのか”を識別する必要がある -->
+<!-- <div id="follow_form_<%#= user.id %>">としてHTMLのidに固有の値を保有させている -->
+<div id="follow_form_<%= user.id %>">
+
+  <!-- (followed_id: user.id)は、relationshipsインスタンスのfollowed_idカラムに、フォローする対象userのidを挿入するという意味の記述 -->
+  <%= form_with(model: current_user.active_relationships.build(followed_id: user.id))  do |f| %>
+    <%= f.hidden_field :followed_id %>
+    <%= f.submit "フォロー" %>
+  <% end %>
+</div>
