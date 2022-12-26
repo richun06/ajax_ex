@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, only: [:index, :show]
+
   root 'blogs#index'
   resources :blogs do
     resources :comments
   end
-
-  resources :users
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
