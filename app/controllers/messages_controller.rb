@@ -35,4 +35,20 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build
     # (「これはピカピカの状態のインスタンスではなく、すでにアソシエーションで他のものと紐づけられているインスタンスである」ということを表したい記述の場合は、newではなくbuildがよく使われ)
   end
+
+  def create
+    # 送られてきたparamsの値を利用して会話にひもづくメッセージを生成
+    @message = @conversation.messages.build(message_params)
+    if @message.save # 保存ができれば、会話にひもづくメッセージ一覧の画面（つまりチャットルーム）に遷移する
+      redirect_to conversation_messages_path(@conversation)
+    else
+      render 'index'
+    end
+  end
+
+  private
+
+  def message_params
+    params.require(:message).permit(:body, :user_id)
+  end
 end
