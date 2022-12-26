@@ -12,4 +12,7 @@ class User < ApplicationRecord
   # 自分が「フォローされている側である」という関係性を取り出すアソシエーション
   has_many :passive_relationships, foreign_key: 'followed_id', class_name: 'Relationship', dependent: :destroy
 
+  # 中間テーブルを介してレコードを取得できるように
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
 end
