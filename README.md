@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 開発言語
+- Ruby 3.0.1
+- Ruby on Rails 6.1.7
 
-Things you may want to cover:
+# 機能
+- deviseユーザ認証
+- ブログ機能
+- Ajax コメント機能
+- Ajax フォロー機能
+- Ajax 1対1のメッセージ機能
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# ER図
+![ajax_ER図](ajax_ER図.png)
