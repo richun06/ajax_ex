@@ -63,3 +63,4 @@ gem 'rexml'
 gem 'devise-i18n'
 
 gem 'annotate'
+gem 'faker'
