@@ -1,0 +1,36 @@
+<% if @over_ten %> <!-- メッセージが10件以上あれば以前のメッセージへのリンクを表示する -->
+  <%= link_to '以前のメッセージ', '?m=all' %>
+<% end %>
+
+<!-- メッセージを一件ずつ抽出してメッセージの内容があればユーザ名や内容を表示 -->
+<div class="ui segment">
+  <% @messages.each do |message| %>
+    <% if message.body.present? %>
+      <div class="item">
+        <div class="content">
+          <div class="header"><strong><%= message.user.name %></strong> <%= message.message_time %></div>
+          <div class="list">
+            <div class="item">
+              <i class="right triangle icon"></i>
+              <%= message.body %> /
+              <% if message.user == current_user %> <!-- 自分が投稿したメッセージが既読か未読かのみを表示 -->
+                <%= message.read ? '既読' : '未読' %> <!-- ?の前の記述がtrueであれば：の左側の処理を実行し、falseであれば：の右側の処理を実行する(三項演算子と呼ばれる記法) -->
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- 会話にひもづくメッセージの入力フォームを投稿者を自分に指定して生成する -->
+<%= form_with(model: [@conversation, @message]) do |f| %>
+  <div class="field">
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+  <div>
+    <%= f.submit "メッセージを送る" %>
+  </div>
+<% end %>
